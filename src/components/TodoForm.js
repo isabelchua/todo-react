@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
-function TodoForm() {
+function TodoForm({ addTodo }) {
 	const [todo, setTodo] = useState({
 		id: '',
 		task: '',
 		completed: false
 	});
 
-	function handTaskInputChange(e) {
+	//when adding new task
+	function handleTaskInputChange(e) {
 		setTodo({ ...todo, task: e.target.value });
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		console.log(todo.task.trim());
 		if (todo.task.trim()) {
-			addTodo({ ...todo, id: uuid.v4() });
+			addTodo({ ...todo, id: uuidv4() });
 			//reset task input
 			setTodo({ ...todo, task: '' });
 		}
@@ -29,7 +31,9 @@ function TodoForm() {
 				value={todo.task}
 				onChange={handleTaskInputChange}
 			/>
-			<button type="submit" />
+			<button type="submit" onClick={handleSubmit}>
+				add
+			</button>
 		</div>
 	);
 }
