@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import Typography from '@material-ui/core/Typography';
 
 import './App.css';
 
@@ -30,7 +31,7 @@ function App() {
 				if (todo.id === id) {
 					return {
 						...todo,
-						complete: !todo.completed
+						completed: !todo.completed
 					};
 				}
 				return todo;
@@ -43,7 +44,10 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+		<div className="app">
+			<Typography style={{ padding: 16 }} variant="h1">
+				TODO
+			</Typography>
 			<TodoForm addTodo={addTodo} />
 			<TodoList
 				todos={todos}
